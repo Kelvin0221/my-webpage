@@ -1,0 +1,50 @@
+:root {
+  font-family: "Courier New", Courier, monospace;
+  line-height: 1.5;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  --default-text-color: white;
+  --default-back-color:#333;
+}
+
+h1 {
+  text-align: center;
+}
+
+body{
+  background-color: var(--default-back-color);
+  color: var(--default-text-color);
+}
+
+.main-content{
+    background-color: black;
+    margin-left: 30px;
+    margin-right: 30px;
+    padding: 15px;
+    border-radius: 30px;
+    min-height: 100px;
+}
+
+.link-style{
+  color:#00f;
+  text-decoration: underline;
+  font-size: 12px;
+}
+
+.link-style:hover{
+  cursor:pointer;
+}
+
+.text-set{
+  white-space: pre-line;
+  width: 100%;
+  min-height:50px;
+}
+
+.hidden{
+  display: none;
+}
