@@ -15,6 +15,9 @@ export default function PopUpCard({data, show, display}: {data: SkillDisplayDeta
                         </svg>  
                     </a>
                 </div>
+                <div className="popup-gallery">
+                    <img src={data?.gallery[0]}></img>
+                </div>
                 <pre className="popup-example">
                     {data?.example}
                 </pre>

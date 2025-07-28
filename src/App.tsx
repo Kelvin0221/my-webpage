@@ -87,7 +87,7 @@ function App({ title }: { title: string }) {
   }
 
   return <>
-    <NavBar active="app"></NavBar>
+    <NavBar active="app" getMode={0}></NavBar>
     <h1>{title}</h1>
     <div tabIndex={1} autoFocus={true} onKeyDown={(e) => keyboardControl(e)}>
       <div>
@@ -111,7 +111,7 @@ function App({ title }: { title: string }) {
 
 };
 
-function DisplayMap(map: WorldMap){
+/*function DisplayMap(map: WorldMap){
   let table=[];
   let mapSize = map.getMapSize();
 
@@ -126,7 +126,7 @@ function DisplayMap(map: WorldMap){
   }
 
   return table;
-}
+}*/
 
 function viewPointMap(map: WorldMap){
   let table=[];

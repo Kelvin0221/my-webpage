@@ -9,4 +9,5 @@ export type SkillDisplayDetail = {
     skillname: string;
     detail: string;
     example: string;
+    gallery: string[];
 }

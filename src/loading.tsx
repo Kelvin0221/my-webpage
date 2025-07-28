@@ -5,7 +5,7 @@ function Loading({state}: {state: boolean}){
     return<>
         <div id="div-loading" className="Loading">
             <h1>
-                {"Var Loading() => {Page is loading...}"}
+                {"SetLoading() =>\n {\nPage is loading...\n}"}
             </h1>
         </div>
         </>        

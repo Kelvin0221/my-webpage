@@ -14,10 +14,8 @@ import Loading from "./loading";
 
 function AboutMe(){
     const [menuDialogIndex, setMenuDialogIndex] = useState(0);
-    const [dialogIndex, setDialogIndex] = useState(0);
-    const [dialogueSet, setDialogueSet] = useState<string[]>([]);
+    const [dialogueSet, setDialogueSet] = useState<string>("");
     const [autoClickMenu, setAutoClickMenu] = useState(0);
-    const [autoClickDialog, setAutoClickDialog] = useState(0);
     const [loading, setLoading] = useState(false);
 
     const username = useUserContext().username;
@@ -36,28 +34,6 @@ function AboutMe(){
         "Please choose what you like to read:"
     ]
 
-    var aboutMeSet = 
-    ["I am born from Penang, Malaysia.",
-    "My greatest passion to help others no regardless of the challenge especially listen to their stories.",
-    "Because I enjoyed the process of coming up with solutions and solving problems.",
-    "I am obedient person, prioritize on to other's opinions.",
-    "However, I am introverted. Hardly do the talking but rather listen and observe.\n",
-    "And a hard-headed person, hardly give up when things getting started or when I believe things will work",
-    "I only stop when I discovered the idea is impossible or it is succeeded."]
-
-    var freetimeSet = "Playing games is how I spend my free time to."+
-    "Because I like to explore new ideas and prefer interactive approach to do anything."+
-    "So, I can learn the theory, mechanics, development lifecycles and even the politics.\n"
-
-    var statusSet = "I started from Diploma, enrolled Diploma in Computer Studies in KDU Penang."+
-    "I helped friends pass their subjects and exams in every semester."+
-    "Until pandemic striked, I worked as Software Developer in an insurance firm that I started as an intern there for 2 years."+
-    "After that, I enrolled Bachelor of Computer Science specialize in Software Engineering in MMU Cyberjaya, Malaysia."+
-    "Starting a life at university for a few years."+
-    "Made my way to rely on myself and live alone outside my hometown.\n"+
-    "I am currently waiting for letter for completion and casually looking for job opportunities."
-
-
     async function fetchAboutMe(aboutMeType: string)
     {
         try{
@@ -66,7 +42,6 @@ function AboutMe(){
             switch (aboutMeType){
                 case "aboutme":
                     result = await axios.get("http://localhost:8080/api/aboutme/aboutme");
-                    //setDialogueSet(aboutMeSet);
                 break;
                 case "freetime":
                     result = await axios.get("http://localhost:8080/api/aboutme/freetime");   
@@ -77,10 +52,10 @@ function AboutMe(){
                 default:
                     result = undefined;
             }
-            result !== undefined?setDialogueSet(result.data):console.error("Invalid fetch operation");
+            (result !== undefined)?setDialogueSet(result.data[0].summary):console.error("Invalid fetch operation");
 
         }catch(e){            
-            setDialogueSet(["Sorry, there's nothing in there... :("]);
+            setDialogueSet("Sorry, there's nothing in there... :(");
         }finally{
             setLoading(false);
         }
@@ -100,13 +75,8 @@ function AboutMe(){
         }
 
         //get info
-        setDialogueSet([]);
-        setDialogIndex(0);    
+        setDialogueSet("");
         await fetchAboutMe(id);
-
-        setAutoClickDialog(
-            Typewriter.createAutoClick(document.getElementById("div-content-dialogue") as HTMLElement, 2000)
-        );
     }
 
     function nextDialogue(displayMode: string){
@@ -126,12 +96,8 @@ function AboutMe(){
                 }
                 break;
             case "content":
-                var typeWriter = new Typewriter(50, document.getElementById("div-content-dialogue") as HTMLElement)
-                if(dialogIndex < dialogueSet.length){
-                    typeWriter.insertString(dialogueSet[dialogIndex]).begin();
-                    setDialogIndex(dialogIndex +1);
-                }else{
-                    clearInterval(autoClickDialog);
+                if(dialogueSet !== ""){
+                    
                 }
                 break;
             default:
@@ -147,7 +113,9 @@ function AboutMe(){
                 <div id="div-menu-dialogue" className="text-set" tabIndex={2} autoFocus={true} onClick={()=>nextDialogue("menu")}></div>
                 <div id="div-menu" className="menu-item"></div>
             </div>
+            <div style={{height:50}}></div>
             <div id="div-content-dialogue" className="text-set" tabIndex={2} autoFocus={true} onClick={()=>nextDialogue("content")}>
+                {dialogueSet}
             </div>
         </div>
     </>

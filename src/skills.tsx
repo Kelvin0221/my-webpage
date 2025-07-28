@@ -16,7 +16,7 @@ function Skills(){
     const [menuDialogIndex, setMenuDialogIndex] = useState(0);
     const [autoClickMenu, setAutoClickMenu] = useState(0);
     const [infoCards, setinfoCards] = useState<SkillDisplayData[]>([]);
-    const [infoCardData, setInfoCardData] = useState<SkillDisplayDetail>({skillnameinitial: "id", skillname: "name", detail: "some desc", example: ""});
+    const [infoCardData, setInfoCardData] = useState<SkillDisplayDetail>({skillnameinitial: "id", skillname: "name", detail: "some desc", example: "", gallery: []});
     const [displayPopUp, setDisplayPopUp] = useState(false);
 
     const username = useUserContext().username;
@@ -32,11 +32,12 @@ function Skills(){
             ["exp","Work Experience(s)"],
             ["edu", "Education(s)"],
             ["proglang", "Programming Language(s)"],
-            ["project", "Project(s)"]
+            ["proj", "Project(s)"]
 
         ]
     var mb = new MenuBuilder(menuList);
 
+    
     useEffect(()=>{
         setAutoClickMenu(
             Typewriter.createAutoClick(document.getElementById("div-menu-dialogue") as HTMLElement, 2000)
@@ -48,7 +49,6 @@ function Skills(){
         var refCard: SkillDisplayData[] = [];
 
         try{
-
             var result: AxiosResponse| undefined;            
             setLoading(true)
             result = await axios.get(`http://localhost:8080/api/skills/${id}`);
@@ -73,9 +73,12 @@ function Skills(){
             var result = await axios.get(`http://localhost:8080/api/skills/detail/${encodeURIComponent(dataId)}`);
 
             if(result.data){
-                setInfoCardData({skillnameinitial: result.data[0].skillnameinitial, skillname: result.data[0].skillname, detail:result.data[0].detail, example: result.data[0].example})
+                var galleryLinks: string[] = [];
+                if(result.data[0].gallery){
+                    galleryLinks = (result.data[0].gallery as string).split(",");
+                }
+                setInfoCardData({skillnameinitial: result.data[0].skillnameinitial, skillname: result.data[0].skillname, detail:result.data[0].detail, example: result.data[0].example, gallery: galleryLinks})
             }
-
 
         }catch(e){
             setLoading(false);
@@ -114,7 +117,7 @@ function Skills(){
     }
     return <>
         <Loading state={loading}></Loading>
-        <NavBar active="language" getMode={0}></NavBar>
+        <NavBar active="Skills" getMode={0}></NavBar>
         <PopUpCard data={infoCardData} display={togglePopUp} show={displayPopUp}></PopUpCard>
         <div className="main-content">
             <TitleBar title="Skills"></TitleBar>
@@ -125,7 +128,7 @@ function Skills(){
             <div id="info-container" className="infoview-container">
                 {
                     infoCards?.map((card) => {
-                       return <span key={card.skillnameinitial}>
+                        return <span key={card.skillnameinitial}>
                             <InfoCard id={card.skillnameinitial} name={card.skillname} desc={card.description} callback={selectCard}></InfoCard>
                         </span>
                     })
