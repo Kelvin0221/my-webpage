@@ -9,7 +9,7 @@ function NavBar({active, getMode}: {active:string, getMode: number}){
         ["/", "Home"],
         ["/aboutme", "About Me"],
         ["/skills",  "Skills"],
-        ["/app", "App"]
+        //["/app", "App"]
     ]
 
     for(let i=0; i<pages.length; i++){

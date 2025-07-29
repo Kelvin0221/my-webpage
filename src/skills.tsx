@@ -51,6 +51,8 @@ function Skills(){
         try{
             var result: AxiosResponse| undefined;            
             setLoading(true)
+            ;
+            console.log(import.meta.env.VITE_ORIGIN);
             result = await axios.get(`http://localhost:8080/api/skills/${id}`);
 
             result?.data.forEach((lang: SkillDisplayData) => {

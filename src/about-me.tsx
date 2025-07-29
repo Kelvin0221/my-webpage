@@ -41,13 +41,13 @@ function AboutMe(){
             var result: AxiosResponse| undefined;
             switch (aboutMeType){
                 case "aboutme":
-                    result = await axios.get("http://localhost:8080/api/aboutme/aboutme");
+                    result = await axios.get(`${import.meta.env.VITE_ORIGIN}/api/aboutme/aboutme`);
                 break;
                 case "freetime":
-                    result = await axios.get("http://localhost:8080/api/aboutme/freetime");   
+                    result = await axios.get(`${import.meta.env.VITE_ORIGIN}/api/aboutme/freetime`);   
                 break;
                 case "currentstatus":
-                    result = await axios.get("http://localhost:8080/api/aboutme/status");   
+                    result = await axios.get(`${import.meta.env.VITE_ORIGIN}/api/aboutme/status`);   
                 break;
                 default:
                     result = undefined;
