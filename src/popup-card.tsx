@@ -1,5 +1,5 @@
 import "./assets/style/popup-card.css";
-import type { SkillDisplayDetail } from "./types";
+import type { SkillDisplayDetail } from "./assets/types/types";
 
 export default function PopUpCard({data, show, display}: {data: SkillDisplayDetail, show: boolean, display: ()=>void}){
     if(show){

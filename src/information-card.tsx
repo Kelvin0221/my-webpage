@@ -1,4 +1,4 @@
-import "./assets/style/infoview.css"
+import "./assets/style/infocard.css"
 
 export default function InfoCard({id,name,desc, callback}:{id: string, name: string, desc: string, callback: (id: string)=>void}){
 

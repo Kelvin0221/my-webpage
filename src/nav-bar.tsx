@@ -9,6 +9,7 @@ function NavBar({active, getMode}: {active:string, getMode: number}){
         ["/", "Home"],
         ["/aboutme", "About Me"],
         ["/skills",  "Skills"],
+        ["/disclaimer",  "Disclaimer"]
         //["/app", "App"]
     ]
 

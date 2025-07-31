@@ -6,10 +6,9 @@ import { useUserContext } from "./assets/context/usercontext";
 import MenuBuilder from "./menu-builder";
 import Typewriter from "./typewriter";
 import InfoCard from "./information-card";
-import "./assets/style/infoview.css";
 import PopUpCard from "./popup-card";
 import axios, { type AxiosResponse } from "axios";
-import type { SkillDisplayData, SkillDisplayDetail } from "./types";
+import type { SkillDisplayData, SkillDisplayDetail } from "./assets/types/types";
 
 function Skills(){
     const [loading, setLoading] = useState(false);
@@ -47,7 +46,6 @@ function Skills(){
     async function menuClick(id: string) {
         setinfoCards([]);
         var refCard: SkillDisplayData[] = [];
-
         try{
             var result: AxiosResponse| undefined;            
             setLoading(true);

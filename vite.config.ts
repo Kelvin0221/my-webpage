@@ -11,7 +11,7 @@ export default defineConfig({
     nodePolyfills ()
   ],
   preview: {
-  port: 3000,
+  port: 433,
   strictPort: true,
  },
  server: {

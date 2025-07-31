@@ -4,6 +4,7 @@ import HomePage from './home';
 import Skills from './skills';
 import { userContext } from './assets/context/usercontext.ts';
 import { useState } from 'react';
+import Disclaimer from './disclaimer';
 
 function AppRouter(){
     const [username, setUsername] = useState("User");
@@ -15,6 +16,7 @@ function AppRouter(){
                         <Route path="/" element={<HomePage />} />
                         <Route path="/aboutme" element={<AboutMe />} />
                         <Route path="/skills" element={<Skills />} />
+                        <Route path="/disclaimer" element={<Disclaimer />} />
                         {/* <Route path="/app" element={<App title="TEST ROUTER" />} /> */}
                     </Routes>
                 </BrowserRouter>

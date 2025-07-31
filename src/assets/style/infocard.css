@@ -8,6 +8,7 @@
 
 .infocard div{
     width: 250px;
+    height: 350px;
     min-height: 200px;
     border: 2px solid white;
     background-color: black;
