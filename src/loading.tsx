@@ -1,11 +1,24 @@
+import { useState } from "react";
 import "./assets/style/loading.css"
 
 function Loading({state}: {state: boolean}){
-    if(state){
+
+    const initLoading = "SetLoading() =>\nPage is loading...";
+    const otLoading = "StillLoading() =>\nPlease wait a lil more longer...";
+
+if(state){
+    const [loadingText, setLoadingText] = useState(initLoading);    
+    
+    function switchText(){
+        setLoadingText(otLoading);
+    }
+
+    setTimeout(switchText, 30000);
+
     return<>
         <div id="div-loading" className="Loading">
             <h1>
-                {"SetLoading() =>\n {\nPage is loading...\n}"}
+                {loadingText}
             </h1>
         </div>
         </>        
